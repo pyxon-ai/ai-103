@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI-103 Exam Kit</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">AI-103 practice kit</p>
+        <h1>Choose an exam</h1>
+      </div>
+      <div class="top-side">
+        <p class="pass-note">Pass mark <strong>700 / 1000</strong></p>
+        <div id="userBar" class="user-bar is-hidden" hidden>
+          <span id="userLabel"></span>
+          <button id="switchUserBtn" type="button" class="ghost">Switch name</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="loginView" class="login">
+        <form id="loginForm" class="login-card">
+          <p class="eyebrow">AI-103 practice kit</p>
+          <h2>Enter your name</h2>
+          <p>Your name stays in a cookie on this browser. Each finished exam is saved under that name and the date.</p>
+          <label>
+            Name
+            <input id="usernameInput" name="username" type="text" maxlength="40" autocomplete="nickname" required />
+          </label>
+          <button class="primary" type="submit">Continue</button>
+        </form>
+      </section>
+
+      <section id="homeView" class="home is-hidden" hidden>
+        <p class="lede">
+          Eight exams, ordered from easy recall to expert scenarios. The path follows the AI-103 cheat sheet: vocabulary first, then security and operations, then vision, speech, retrieval, agents, and evaluation.
+        </p>
+        <div class="chooser">
+          <div id="examList" class="exam-list" role="list"></div>
+          <aside id="examDetail" class="detail"></aside>
+        </div>
+      </section>
+
+      <section id="examView" class="exam-view is-hidden" hidden aria-live="polite">
+        <header class="exam-bar">
+          <div>
+            <p id="examRank" class="eyebrow"></p>
+            <h2 id="examProgress"></h2>
+          </div>
+          <div class="status">
+            <span id="timerLabel">--:--</span>
+            <span id="answeredLabel">0 answered</span>
+            <span id="flaggedLabel">0 flagged</span>
+          </div>
+        </header>
+        <div class="exam-layout">
+          <nav id="questionNav" class="qnav" aria-label="Questions"></nav>
+          <article class="question-card">
+            <div class="q-tools">
+              <span id="topicPill" class="pill"></span>
+              <button id="flagBtn" type="button" class="ghost">Flag</button>
+            </div>
+            <h3 id="stem"></h3>
+            <form id="optionsForm" class="options"></form>
+            <aside id="reasonBox" class="reason is-hidden" hidden>
+              <p id="reasonVerdict"></p>
+              <h4>Why this is right</h4>
+              <p id="reasonText"></p>
+            </aside>
+            <div class="q-actions">
+              <button id="prevBtn" type="button" class="ghost">Previous</button>
+              <button id="nextBtn" type="button" class="ghost">Next</button>
+              <button id="finishBtn" type="button" class="danger">Finish exam</button>
+              <button id="leaveBtn" type="button" class="ghost">Save and leave</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="resultView" class="results is-hidden" hidden>
+        <div id="resultBanner" class="banner"></div>
+        <div class="result-grid">
+          <div>
+            <h2>Topic breakdown</h2>
+            <div id="topicResults" class="breakdown"></div>
+            <h2>Cheat sheet focus</h2>
+            <ul id="resultFocus" class="focus"></ul>
+          </div>
+          <div>
+            <h2>Review</h2>
+            <div id="reviewList" class="review"></div>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button id="backHomeBtn" type="button" class="primary">Choose another exam</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="modal" class="modal is-hidden" hidden role="dialog" aria-modal="true" aria-labelledby="modalText">
+      <div class="modal-card">
+        <p id="modalText"></p>
+        <div class="q-actions">
+          <button id="modalYes" type="button" class="danger">Finish</button>
+          <button id="modalNo" type="button" class="ghost">Keep going</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+    <script>
+      firebase.initializeApp({
+        apiKey: "AIzaSyBtz9kTAsHWk869jj1v3onWXHxWSkQV6HA",
+        authDomain: "mychart-3e5db.firebaseapp.com",
+        databaseURL: "https://mychart-3e5db.firebaseio.com",
+        projectId: "mychart-3e5db",
+        storageBucket: "mychart-3e5db.firebasestorage.app",
+        messagingSenderId: "109985710096",
+        appId: "1:109985710096:web:3095107df20c350b",
+      });
+    </script>
+    <script src="data/kit.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
